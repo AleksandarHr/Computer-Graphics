@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7F5FA718-AAD7-3F7A-9CFE-E77198479BED}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>drawsvg</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CS Work\Graphics\DrawSVG\build_rel\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">drawsvg.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">drawsvg</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CS Work\Graphics\DrawSVG\build_rel\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">drawsvg.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">drawsvg</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\CS Work\Graphics\DrawSVG\build_rel\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">drawsvg.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">drawsvg</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\CS Work\Graphics\DrawSVG\build_rel\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">drawsvg.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">drawsvg</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_USE_MATH_DEFINES;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/bin/freetype.dll" "D:/CS Work/Graphics/DrawSVG/build_rel/Debug"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>Debug\drawsvg_hdwr.lib;..\..\src\reference\drawsvg_ref.lib;freetype.lib;opengl32.lib;glu32.lib;..\CMU462\src\Debug\CMU462.lib;..\CMU462\deps\glew\Debug\glew.lib;..\CMU462\deps\glfw\src\Debug\glfw3.lib;Debug\drawsvg_hdwr.lib;..\..\src\reference\drawsvg_ref.lib;freetype.lib;opengl32.lib;glu32.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/lib;D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/CS Work/Graphics/DrawSVG/build_rel/Debug/drawsvg.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/CS Work/Graphics/DrawSVG/build_rel/Debug/drawsvg.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_USE_MATH_DEFINES;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_USE_MATH_DEFINES;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/bin/freetype.dll" "D:/CS Work/Graphics/DrawSVG/build_rel/Release"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>Release\drawsvg_hdwr.lib;..\..\src\reference\drawsvg_ref.lib;freetype.lib;opengl32.lib;glu32.lib;..\CMU462\src\Release\CMU462.lib;..\CMU462\deps\glew\Release\glew.lib;..\CMU462\deps\glfw\src\Release\glfw3.lib;Release\drawsvg_hdwr.lib;..\..\src\reference\drawsvg_ref.lib;freetype.lib;opengl32.lib;glu32.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/lib;D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/CS Work/Graphics/DrawSVG/build_rel/Release/drawsvg.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/CS Work/Graphics/DrawSVG/build_rel/Release/drawsvg.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_USE_MATH_DEFINES;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_USE_MATH_DEFINES;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/bin/freetype.dll" "D:/CS Work/Graphics/DrawSVG/build_rel/MinSizeRel"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>MinSizeRel\drawsvg_hdwr.lib;..\..\src\reference\drawsvg_ref.lib;freetype.lib;opengl32.lib;glu32.lib;..\CMU462\src\MinSizeRel\CMU462.lib;..\CMU462\deps\glew\MinSizeRel\glew.lib;..\CMU462\deps\glfw\src\MinSizeRel\glfw3.lib;MinSizeRel\drawsvg_hdwr.lib;..\..\src\reference\drawsvg_ref.lib;freetype.lib;opengl32.lib;glu32.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/lib;D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/CS Work/Graphics/DrawSVG/build_rel/MinSizeRel/drawsvg.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/CS Work/Graphics/DrawSVG/build_rel/MinSizeRel/drawsvg.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_USE_MATH_DEFINES;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_USE_MATH_DEFINES;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\CS Work\Graphics\DrawSVG\CMU462\include;D:\CS Work\Graphics\DrawSVG\CMU462\include\CMU462;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include;D:\CS Work\Graphics\DrawSVG\CMU462\deps\freetype\include\freetype;D:\CS Work\Graphics\DrawSVG\src\dirent;D:\CS Work\Graphics\DrawSVG\src;D:\CS Work\Graphics\DrawSVG\CMU462\deps\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PostBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different "D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/bin/freetype.dll" "D:/CS Work/Graphics/DrawSVG/build_rel/RelWithDebInfo"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
+    <Link>
+      <AdditionalDependencies>RelWithDebInfo\drawsvg_hdwr.lib;..\..\src\reference\drawsvg_ref.lib;freetype.lib;opengl32.lib;glu32.lib;..\CMU462\src\RelWithDebInfo\CMU462.lib;..\CMU462\deps\glew\RelWithDebInfo\glew.lib;..\CMU462\deps\glfw\src\RelWithDebInfo\glfw3.lib;RelWithDebInfo\drawsvg_hdwr.lib;..\..\src\reference\drawsvg_ref.lib;freetype.lib;opengl32.lib;glu32.lib;freetype.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/lib;D:/CS Work/Graphics/DrawSVG/CMU462/deps/freetype/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/CS Work/Graphics/DrawSVG/build_rel/RelWithDebInfo/drawsvg.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/CS Work/Graphics/DrawSVG/build_rel/RelWithDebInfo/drawsvg.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\CS Work\Graphics\DrawSVG\src\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule D:/CS Work/Graphics/DrawSVG/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/CS Work/Graphics/DrawSVG" "-BD:/CS Work/Graphics/DrawSVG/build_rel" --check-stamp-file "D:/CS Work/Graphics/DrawSVG/build_rel/src/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CS Work\Graphics\DrawSVG\src\hardware\hardware.cmake;D:\CS Work\Graphics\DrawSVG\src\reference\reference.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\CS Work\Graphics\DrawSVG\build_rel\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/CS Work/Graphics/DrawSVG/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/CS Work/Graphics/DrawSVG" "-BD:/CS Work/Graphics/DrawSVG/build_rel" --check-stamp-file "D:/CS Work/Graphics/DrawSVG/build_rel/src/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CS Work\Graphics\DrawSVG\src\hardware\hardware.cmake;D:\CS Work\Graphics\DrawSVG\src\reference\reference.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\CS Work\Graphics\DrawSVG\build_rel\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/CS Work/Graphics/DrawSVG/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/CS Work/Graphics/DrawSVG" "-BD:/CS Work/Graphics/DrawSVG/build_rel" --check-stamp-file "D:/CS Work/Graphics/DrawSVG/build_rel/src/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\CS Work\Graphics\DrawSVG\src\hardware\hardware.cmake;D:\CS Work\Graphics\DrawSVG\src\reference\reference.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\CS Work\Graphics\DrawSVG\build_rel\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/CS Work/Graphics/DrawSVG/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SD:/CS Work/Graphics/DrawSVG" "-BD:/CS Work/Graphics/DrawSVG/build_rel" --check-stamp-file "D:/CS Work/Graphics/DrawSVG/build_rel/src/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\CS Work\Graphics\DrawSVG\src\hardware\hardware.cmake;D:\CS Work\Graphics\DrawSVG\src\reference\reference.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\CS Work\Graphics\DrawSVG\build_rel\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\svg.cpp" />
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\png.cpp" />
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\texture.cpp" />
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\viewport.cpp" />
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\triangulation.cpp" />
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\software_renderer.cpp" />
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\drawsvg.cpp" />
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\main.cpp" />
+    <ClCompile Include="D:\CS Work\Graphics\DrawSVG\src\dirent\dirent.c" />
+    <ClInclude Include="D:\CS Work\Graphics\DrawSVG\src\svg.h" />
+    <ClInclude Include="D:\CS Work\Graphics\DrawSVG\src\png.h" />
+    <ClInclude Include="D:\CS Work\Graphics\DrawSVG\src\texture.h" />
+    <ClInclude Include="D:\CS Work\Graphics\DrawSVG\src\viewport.h" />
+    <ClInclude Include="D:\CS Work\Graphics\DrawSVG\src\triangulation.h" />
+    <ClInclude Include="D:\CS Work\Graphics\DrawSVG\src\hardware_renderer.h" />
+    <ClInclude Include="D:\CS Work\Graphics\DrawSVG\src\software_renderer.h" />
+    <ClInclude Include="D:\CS Work\Graphics\DrawSVG\src\drawsvg.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\CS Work\Graphics\DrawSVG\build_rel\ZERO_CHECK.vcxproj">
+      <Project>{EE293C5F-674D-332F-9EC3-4580891BCF21}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\CS Work\Graphics\DrawSVG\build_rel\CMU462\src\CMU462.vcxproj">
+      <Project>{EA2A3C3B-73A5-3311-AF28-2C44EF73D5D5}</Project>
+      <Name>CMU462</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\CS Work\Graphics\DrawSVG\build_rel\src\drawsvg_hdwr.vcxproj">
+      <Project>{F4ADBCD1-23EB-3351-956B-5A8C7C39CFC5}</Project>
+      <Name>drawsvg_hdwr</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\CS Work\Graphics\DrawSVG\build_rel\CMU462\deps\glew\glew.vcxproj">
+      <Project>{83127CBF-FE2E-3AE8-9736-98B1AD17DD22}</Project>
+      <Name>glew</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\CS Work\Graphics\DrawSVG\build_rel\CMU462\deps\glfw\src\glfw.vcxproj">
+      <Project>{D424E02B-A8D1-3F2E-BEFF-283D94BEA597}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

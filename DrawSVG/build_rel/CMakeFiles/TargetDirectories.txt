@@ -1,0 +1,17 @@
+D:/CS Work/Graphics/DrawSVG/build_rel/CMakeFiles/INSTALL.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMakeFiles/ALL_BUILD.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMakeFiles/ZERO_CHECK.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/CMakeFiles/INSTALL.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/CMakeFiles/ALL_BUILD.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/deps/freetype/CMakeFiles/INSTALL.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/deps/glew/CMakeFiles/glew.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/deps/glew/CMakeFiles/INSTALL.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/deps/glfw/CMakeFiles/INSTALL.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/deps/glfw/CMakeFiles/ALL_BUILD.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/deps/glfw/src/CMakeFiles/glfw.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/deps/glfw/src/CMakeFiles/INSTALL.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/src/CMakeFiles/CMU462.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/CMU462/src/CMakeFiles/INSTALL.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/src/CMakeFiles/drawsvg_hdwr.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/src/CMakeFiles/drawsvg.dir
+D:/CS Work/Graphics/DrawSVG/build_rel/src/CMakeFiles/INSTALL.dir
