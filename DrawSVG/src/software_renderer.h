@@ -119,11 +119,20 @@ class SoftwareRendererImp : public SoftwareRenderer {
                        float x1, float y1,
                        Color color);
 
+  // rasterize a line using the Bresenham algorithm (https://www.cs.helsinki.fi/group/goa/mallinnus/lines/bresenh.html)
+  void rasterize_line_bresenham(float x0, float y0,
+                                float x1, float y1,
+                                Color color);
+
   // rasterize a triangle
   void rasterize_triangle( float x0, float y0,
                            float x1, float y1,
                            float x2, float y2,
                            Color color );
+  
+  int SoftwareRendererImp::point_plane_check(float x0, float y0,
+      float x1, float y1,
+      float x2, float y2);
 
   // rasterize an image
   void rasterize_image( float x0, float y0,
@@ -132,6 +141,9 @@ class SoftwareRendererImp : public SoftwareRenderer {
 
   // resolve samples to render target
   void resolve( void );
+
+  void SoftwareRendererImp::fill_sample(int x, int y, Color color);
+
 
 }; // class SoftwareRendererImp
 

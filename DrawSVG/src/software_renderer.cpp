@@ -244,15 +244,112 @@ void SoftwareRendererImp::rasterize_line( float x0, float y0,
 
   // Task 2: 
   // Implement line rasterization
+    rasterize_line_bresenham(x0, y0, x1, y1, color);
 }
 
+void SoftwareRendererImp::rasterize_line_bresenham( float x0, float y0,
+                                                    float x1, float y1,
+                                                    Color color) {
+    
+    // We allow lines of slopes 0 <= slope <= 1 only
+    bool slopeWithinRange = abs(x1 - x0) >= abs(y1 - y0);
+    if (!slopeWithinRange) {
+        swap(x0, y0);
+        swap(x1, y1);
+    }
+
+    // Line should be such that only increases it's x coordinate (e.g. going left-to-right)
+    if (x0 > x1) {
+        swap(x0, x1);
+        swap(y0, y1);
+    }
+
+    int dx = x1 - x0;
+    int dy = y1 - y0;
+    int y = y0;
+    int epsilon = 0;
+    int sign = dy > 0 ? 1 : -1;
+    dy = abs(dy);
+
+    for (int x = x0; x <= x1; x++) {
+        // Draw point
+        if (slopeWithinRange) {
+            fill_sample(x, y, color);
+        }
+        else {
+            fill_sample(y, x, color);
+        }
+
+        // Update coordinates for next point
+        epsilon += dy;
+        if ((epsilon << 1) >= dx) {
+            y += sign;
+            epsilon -= dx;
+        }
+    }
+}
+
+void SoftwareRendererImp::fill_sample(int x, int y, Color color) {
+
+    // check bounds
+    if (x < 0 || x >= this->target_w) return;
+    if (y < 0 || y >= this->target_h) return;
+
+    size_t pos = 4 * (x + y * this->target_w);
+    Color from = color;
+
+    Color src, to;
+    src.r = render_target[pos] / 255.0f;
+    src.g = render_target[pos + 1] / 255.0f;
+    src.b = render_target[pos + 2] / 255.0f;
+    src.a = render_target[pos + 3] / 255.0f;
+
+    to.r = (1.0f - from.a) * src.r + from.r * from.a;
+    to.g = (1.0f - from.a) * src.g + from.g * from.a;
+    to.b = (1.0f - from.a) * src.b + from.b * from.a;
+    to.a = 1.0f - (1.0f - from.a) * (1.0f - src.a);
+
+    render_target[pos] = (uint8_t)(to.r * 255);
+    render_target[pos + 1] = (uint8_t)(to.g * 255);
+    render_target[pos + 2] = (uint8_t)(to.b * 255);
+    render_target[pos + 3] = (uint8_t)(to.a * 255);
+}
+
+// TODO: Improve quality
 void SoftwareRendererImp::rasterize_triangle( float x0, float y0,
                                               float x1, float y1,
                                               float x2, float y2,
                                               Color color ) {
-  // Task 3: 
-  // Implement triangle rasterization
+    // Find min/max coordinates to determine bounding box of the triangle
+    float maxX = ceil(max(max(x0, x1), x2));
+    float maxY = ceil(max(max(y0, y1), y2));
+    float minX = floor(min(min(x0, x1), x2)) + 0.5f;
+    float minY = floor(min(min(y0, y1), y2)) + 0.5f;
 
+    for (float y = minY; y <= maxY; y+=1) {
+        for (float x = minX; x <= maxX; x+=1) {
+            int turns = point_plane_check(x0, y0, x1, y1, x, y) +
+                point_plane_check(x1, y1, x2, y2, x, y) +
+                point_plane_check(x2, y2, x0, y0, x, y);
+
+            // If it's within the triangle, color
+            bool within_triangle = (turns == 3);
+            if (within_triangle) {
+                fill_sample(x, y, color);
+            }
+        }
+    }
+}
+
+int SoftwareRendererImp::point_plane_check(float x0, float y0,
+                                             float x1, float y1,
+                                             float x2, float y2) {
+    float dx01 = x1 - x0;
+    float dy01 = y1 - y0;
+    float dx02 = x2 - x0;
+    float dy02 = y2 - y0;
+    float cross_product = (dx01 * dy02) - (dy01 * dx02);
+    return cross_product > 0 ? 1 : 0;
 }
 
 void SoftwareRendererImp::rasterize_image( float x0, float y0,
