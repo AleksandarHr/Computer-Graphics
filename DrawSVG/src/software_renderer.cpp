@@ -18,6 +18,7 @@ void SoftwareRendererImp::draw_svg( SVG& svg ) {
 
   // set top level transformation
   transformation = svg_2_screen;
+  memset(&supersample_target[0], 255, supersample_target.size() * sizeof supersample_target[0]);
 
   // draw all elements
   for ( size_t i = 0; i < svg.elements.size(); ++i ) {
@@ -44,8 +45,10 @@ void SoftwareRendererImp::set_sample_rate( size_t sample_rate ) {
 
   // Task 4: 
   // You may want to modify this for supersampling support
-  this->sample_rate = sample_rate;
-
+    this->sample_rate = sample_rate;
+    this->supersample_w = this->target_w * this->sample_rate;
+    this->supersample_h = this->target_h * this->sample_rate;
+    this->supersample_target.resize(4 * this->supersample_w * this->supersample_h);
 }
 
 void SoftwareRendererImp::set_render_target( unsigned char* render_target,
@@ -57,6 +60,9 @@ void SoftwareRendererImp::set_render_target( unsigned char* render_target,
   this->target_w = width;
   this->target_h = height;
 
+  this->supersample_w = this->target_w * this->sample_rate;
+  this->supersample_h = this->target_h * this->sample_rate;
+  this->supersample_target.resize(4 * this->supersample_w * this->supersample_h);
 }
 
 void SoftwareRendererImp::draw_element( SVGElement* element ) {
@@ -230,11 +236,19 @@ void SoftwareRendererImp::rasterize_point( float x, float y, Color color ) {
   if ( sx < 0 || sx >= target_w ) return;
   if ( sy < 0 || sy >= target_h ) return;
 
-  // fill sample - NOT doing alpha blending!
-  render_target[4 * (sx + sy * target_w)    ] = (uint8_t) (color.r * 255);
-  render_target[4 * (sx + sy * target_w) + 1] = (uint8_t) (color.g * 255);
-  render_target[4 * (sx + sy * target_w) + 2] = (uint8_t) (color.b * 255);
-  render_target[4 * (sx + sy * target_w) + 3] = (uint8_t) (color.a * 255);
+  sx *= sample_rate;
+  sy *= sample_rate;
+
+  for (int xi = sx; xi < sx + sample_rate; ++xi) {
+      for (int yi = sy; yi < sy + sample_rate; ++yi) {
+          // fill sample
+          size_t pix_position = 4 * (xi + yi * supersample_w);
+          supersample_target[pix_position] = (uint8_t)(color.r * 255);
+          supersample_target[pix_position + 1] = (uint8_t)(color.g * 255);
+          supersample_target[pix_position + 2] = (uint8_t)(color.b * 255);
+          supersample_target[pix_position + 3] = (uint8_t)(color.a * 255);
+      }
+  }
 
 }
 
@@ -250,6 +264,11 @@ void SoftwareRendererImp::rasterize_line( float x0, float y0,
 void SoftwareRendererImp::rasterize_line_bresenham( float x0, float y0,
                                                     float x1, float y1,
                                                     Color color) {
+    
+    x0 *= sample_rate;
+    x1 *= sample_rate;
+    y0 *= sample_rate;
+    y1 *= sample_rate;
     
     // We allow lines of slopes 0 <= slope <= 1 only
     bool slopeWithinRange = abs(x1 - x0) >= abs(y1 - y0);
@@ -292,27 +311,27 @@ void SoftwareRendererImp::rasterize_line_bresenham( float x0, float y0,
 void SoftwareRendererImp::fill_sample(int x, int y, Color color) {
 
     // check bounds
-    if (x < 0 || x >= this->target_w) return;
-    if (y < 0 || y >= this->target_h) return;
+    if (x < 0 || x >= this->supersample_w) return;
+    if (y < 0 || y >= this->supersample_h) return;
 
-    size_t pos = 4 * (x + y * this->target_w);
+    size_t pos = 4 * (x + y * this->supersample_w);
     Color from = color;
 
     Color src, to;
-    src.r = render_target[pos] / 255.0f;
-    src.g = render_target[pos + 1] / 255.0f;
-    src.b = render_target[pos + 2] / 255.0f;
-    src.a = render_target[pos + 3] / 255.0f;
+    src.r = supersample_target[pos] / 255.0f;
+    src.g = supersample_target[pos + 1] / 255.0f;
+    src.b = supersample_target[pos + 2] / 255.0f;
+    src.a = supersample_target[pos + 3] / 255.0f;
 
     to.r = (1.0f - from.a) * src.r + from.r * from.a;
     to.g = (1.0f - from.a) * src.g + from.g * from.a;
     to.b = (1.0f - from.a) * src.b + from.b * from.a;
     to.a = 1.0f - (1.0f - from.a) * (1.0f - src.a);
 
-    render_target[pos] = (uint8_t)(to.r * 255);
-    render_target[pos + 1] = (uint8_t)(to.g * 255);
-    render_target[pos + 2] = (uint8_t)(to.b * 255);
-    render_target[pos + 3] = (uint8_t)(to.a * 255);
+    supersample_target[pos] = (uint8_t)(to.r * 255);
+    supersample_target[pos + 1] = (uint8_t)(to.g * 255);
+    supersample_target[pos + 2] = (uint8_t)(to.b * 255);
+    supersample_target[pos + 3] = (uint8_t)(to.a * 255);
 }
 
 // TODO: Improve quality
@@ -320,6 +339,14 @@ void SoftwareRendererImp::rasterize_triangle( float x0, float y0,
                                               float x1, float y1,
                                               float x2, float y2,
                                               Color color ) {
+    
+    x0 *= sample_rate;
+    y0 *= sample_rate;
+    x1 *= sample_rate;
+    y1 *= sample_rate;
+    x2 *= sample_rate;
+    y2 *= sample_rate;
+    
     // Find min/max coordinates to determine bounding box of the triangle
     float maxX = ceil(max(max(x0, x1), x2));
     float maxY = ceil(max(max(y0, y1), y2));
@@ -365,9 +392,34 @@ void SoftwareRendererImp::resolve( void ) {
 
   // Task 4: 
   // Implement supersampling
-  // You may also need to modify other functions marked with "Task 4".
-  return;
+    size_t num_samples = sample_rate * sample_rate;
+    for (size_t x = 0; x <= supersample_w - sample_rate; x += sample_rate) {
+        for (size_t y = 0; y <= supersample_h - sample_rate; y += sample_rate) {
+            uint16_t r = 0, g = 0, b = 0, a = 0;
+            for (size_t xi = 0; xi < sample_rate; ++xi) {
+                for (size_t yi = 0; yi < sample_rate; ++yi) {
+                    size_t sample_position = 4 * (x + xi + (y + yi) * supersample_w);
+                    r += supersample_target[sample_position];
+                    g += supersample_target[sample_position + 1];
+                    b += supersample_target[sample_position + 2];
+                    a += supersample_target[sample_position + 3];
+                }
+            }
 
+            r = r / num_samples;
+            g = g / num_samples;
+            b = b / num_samples;
+            a = a / num_samples;
+
+            size_t pix_x = x / sample_rate;
+            size_t pix_y = y / sample_rate;
+            size_t pix_position = 4 * (pix_x + pix_y * target_w);
+            render_target[pix_position] = (uint8_t)(r);
+            render_target[pix_position + 1] = (uint8_t)(g);
+            render_target[pix_position + 2] = (uint8_t)(b);
+            render_target[pix_position + 3] = (uint8_t)(a);
+        }
+    }
 }
 
 

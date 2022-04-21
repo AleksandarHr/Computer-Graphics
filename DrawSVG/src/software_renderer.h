@@ -144,6 +144,9 @@ class SoftwareRendererImp : public SoftwareRenderer {
 
   void SoftwareRendererImp::fill_sample(int x, int y, Color color);
 
+  private:
+    std::vector<uint8_t> supersample_target;
+    size_t supersample_w, supersample_h;
 
 }; // class SoftwareRendererImp
 
