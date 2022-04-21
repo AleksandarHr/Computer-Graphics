@@ -339,7 +339,6 @@ void SoftwareRendererImp::rasterize_triangle( float x0, float y0,
                                               float x1, float y1,
                                               float x2, float y2,
                                               Color color ) {
-    
     x0 *= sample_rate;
     y0 *= sample_rate;
     x1 *= sample_rate;
@@ -353,6 +352,8 @@ void SoftwareRendererImp::rasterize_triangle( float x0, float y0,
     float minX = floor(min(min(x0, x1), x2)) + 0.5f;
     float minY = floor(min(min(y0, y1), y2)) + 0.5f;
 
+    // Iterate over each sample and determine if it is within the triangle specified
+    // TODO: Improve algorithm -- 'early out' and 'early in' boxes
     for (float y = minY; y <= maxY; y+=1) {
         for (float x = minX; x <= maxX; x+=1) {
             int turns = point_plane_check(x0, y0, x1, y1, x, y) +
@@ -368,6 +369,7 @@ void SoftwareRendererImp::rasterize_triangle( float x0, float y0,
     }
 }
 
+// Check which side the point (x2,y2) is from the line (x0,y0) - (x1,y1)
 int SoftwareRendererImp::point_plane_check(float x0, float y0,
                                              float x1, float y1,
                                              float x2, float y2) {
@@ -392,9 +394,12 @@ void SoftwareRendererImp::resolve( void ) {
 
   // Task 4: 
   // Implement supersampling
+
     size_t num_samples = sample_rate * sample_rate;
     for (size_t x = 0; x <= supersample_w - sample_rate; x += sample_rate) {
         for (size_t y = 0; y <= supersample_h - sample_rate; y += sample_rate) {
+            
+            // Iterate over the sample_rate x sample_rate box
             uint16_t r = 0, g = 0, b = 0, a = 0;
             for (size_t xi = 0; xi < sample_rate; ++xi) {
                 for (size_t yi = 0; yi < sample_rate; ++yi) {
@@ -406,11 +411,13 @@ void SoftwareRendererImp::resolve( void ) {
                 }
             }
 
+            // Compute average of r,g,b,a channels over the sampling box
             r = r / num_samples;
             g = g / num_samples;
             b = b / num_samples;
             a = a / num_samples;
 
+            // Map the computed value to the relevant original pixel
             size_t pix_x = x / sample_rate;
             size_t pix_y = y / sample_rate;
             size_t pix_position = 4 * (pix_x + pix_y * target_w);
