@@ -18,13 +18,15 @@ void SoftwareRendererImp::draw_svg( SVG& svg ) {
 
   // set top level transformation
   transformation = svg_2_screen;
+  transformation_stack.push(svg_2_screen);
   memset(&supersample_target[0], 255, supersample_target.size() * sizeof supersample_target[0]);
 
   // draw all elements
   for ( size_t i = 0; i < svg.elements.size(); ++i ) {
     draw_element(svg.elements[i]);
   }
-
+  transformation = transformation_stack.top();
+  
   // draw canvas outline
   Vector2D a = transform(Vector2D(    0    ,     0    )); a.x--; a.y--;
   Vector2D b = transform(Vector2D(svg.width,     0    )); b.x++; b.y--;
@@ -38,7 +40,7 @@ void SoftwareRendererImp::draw_svg( SVG& svg ) {
 
   // resolve and send to render target
   resolve();
-
+  transformation_stack.pop();
 }
 
 void SoftwareRendererImp::set_sample_rate( size_t sample_rate ) {
@@ -69,6 +71,8 @@ void SoftwareRendererImp::draw_element( SVGElement* element ) {
 
   // Task 5 (part 1):
   // Modify this to implement the transformation stack
+    transformation_stack.push(transformation_stack.top() * element->transform);
+    transformation = transformation_stack.top();
 
   switch(element->type) {
     case POINT:
@@ -99,6 +103,7 @@ void SoftwareRendererImp::draw_element( SVGElement* element ) {
       break;
   }
 
+  transformation_stack.pop();
 }
 
 
@@ -361,7 +366,7 @@ void SoftwareRendererImp::rasterize_triangle( float x0, float y0,
                 point_plane_check(x2, y2, x0, y0, x, y);
 
             // If it's within the triangle, color
-            bool within_triangle = (turns == 3);
+            bool within_triangle = (abs(turns) == 3);
             if (within_triangle) {
                 fill_sample(x, y, color);
             }
@@ -378,7 +383,7 @@ int SoftwareRendererImp::point_plane_check(float x0, float y0,
     float dx02 = x2 - x0;
     float dy02 = y2 - y0;
     float cross_product = (dx01 * dy02) - (dy01 * dx02);
-    return cross_product > 0 ? 1 : 0;
+    return cross_product > 0 ? 1 : -1;
 }
 
 void SoftwareRendererImp::rasterize_image( float x0, float y0,

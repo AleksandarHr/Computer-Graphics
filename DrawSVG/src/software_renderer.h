@@ -7,6 +7,7 @@
 #include "CMU462.h"
 #include "texture.h"
 #include "svg_renderer.h"
+#include <stack>
 
 namespace CMU462 { // CMU462
 
@@ -147,6 +148,7 @@ class SoftwareRendererImp : public SoftwareRenderer {
   private:
     std::vector<uint8_t> supersample_target;
     size_t supersample_w, supersample_h;
+    std::stack<Matrix3x3> transformation_stack;
 
 }; // class SoftwareRendererImp
 
