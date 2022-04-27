@@ -391,7 +391,22 @@ void SoftwareRendererImp::rasterize_image( float x0, float y0,
                                            Texture& tex ) {
   // Task 6: 
   // Implement image rasterization
+    x0 *= sample_rate;
+    x1 *= sample_rate;
+    y0 *= sample_rate;
+    y1 *= sample_rate;
 
+    float w = x1 - x0;
+    float h= y1 - y0;
+    float du = 1.0f / w;
+    float dv = 1.0f / h;
+
+    for (float x = x0, u = 0; x < x1; x++, u += du) {
+        for (float y = y0, v = 0; y < y1; y++, v += dv) {
+            Color c = sampler->sample_nearest(tex, u, v);
+            fill_sample(x, y, c);
+        }
+    }
 }
 
 // resolve samples to render target
