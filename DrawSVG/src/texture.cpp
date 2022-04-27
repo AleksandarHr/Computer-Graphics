@@ -91,10 +91,10 @@ Color Sampler2DImp::sample_nearest(Texture& tex,
     MipLevel& mip = tex.mipmap[level];
     float adjusted_u = u * mip.width;
     float adjusted_v = v * mip.height;
-    size_t nearest_x = adjusted_u < 0.5f ? 0 : round(adjusted_u - 0.5f);
-    size_t nearest_y = adjusted_v < 0.5f ? 0 : round(adjusted_v - 0.5f);
+    size_t texel_x = adjusted_u < 0.5f ? 0 : round(adjusted_u - 0.5f);
+    size_t texel_y = adjusted_v < 0.5f ? 0 : round(adjusted_v - 0.5f);
     Color c;
-    uint8_to_float(&c.r, &mip.texels[4 * (nearest_x + mip.width * nearest_y)]);
+    uint8_to_float(&c.r, &mip.texels[4 * (texel_x + mip.width * texel_y)]);
     return c;
 }
 
@@ -105,8 +105,28 @@ Color Sampler2DImp::sample_bilinear(Texture& tex,
   // Task 6: Implement bilinear filtering
 
   // return magenta for invalid level
-  return Color(1,0,1,1);
+    if (level > tex.mipmap.size()) {
+        // return magenta for invalid level
+        return Color(1, 0, 1, 1);
+    }
 
+    MipLevel& mip = tex.mipmap[level];
+    float texel_u = u * mip.width;
+    float texel_v = v * mip.height;
+    size_t texel_i = texel_u < 0.5f ? 0 : floor(texel_u - 0.5f);
+    size_t texel_j = texel_v < 0.5f ? 0 : floor(texel_v - 0.5f);
+    float texel_s = texel_u - texel_i - 0.5f;
+    float texel_t = texel_v - texel_j - 0.5f;
+
+    Color c00, c01, c10, c11;
+    uint8_to_float(&c00.r, &mip.texels[4 * (texel_i + mip.width * texel_j)]);
+    uint8_to_float(&c01.r, &mip.texels[4 * (texel_i + 1 + mip.width * texel_j)]);
+    uint8_to_float(&c10.r, &mip.texels[4 * (texel_i + mip.width * (texel_j + 1))]);
+    uint8_to_float(&c11.r, &mip.texels[4 * (texel_i + 1 + mip.width * (texel_j + 1))]);
+
+    Color f = (1 - texel_t)*((1 - texel_s) * c00 + texel_s * c01) + 
+        texel_t * ((1-texel_s)*c10 + texel_s * c11);
+    return f;
 }
 
 Color Sampler2DImp::sample_trilinear(Texture& tex, 

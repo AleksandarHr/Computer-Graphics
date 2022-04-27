@@ -403,7 +403,7 @@ void SoftwareRendererImp::rasterize_image( float x0, float y0,
 
     for (float x = x0, u = 0; x < x1; x++, u += du) {
         for (float y = y0, v = 0; y < y1; y++, v += dv) {
-            Color c = sampler->sample_nearest(tex, u, v);
+            Color c = sampler->sample_bilinear(tex, u, v);
             fill_sample(x, y, c);
         }
     }
