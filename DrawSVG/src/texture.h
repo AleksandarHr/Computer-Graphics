@@ -43,9 +43,9 @@ class Sampler2D {
                                 float u, float v, 
                                 int level = 0) = 0;
 
-  virtual Color sample_trilinear(Texture& tex, 
-                                 float u, float v, 
-                                 float u_scale, float v_scale) = 0;
+  virtual Color sample_trilinear(Texture& tex,
+      float u, float v,
+      float u_scale, float v_scale) = 0;
   
   inline SampleMethod get_sample_method() const {
     return method;

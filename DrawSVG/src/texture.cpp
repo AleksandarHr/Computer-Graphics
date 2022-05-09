@@ -27,14 +27,7 @@ inline void float_to_uint8( unsigned char* dst, float src[4] ) {
 
 void Sampler2DImp::generate_mips(Texture& tex, int startLevel) {
 
-  // NOTE: 
-  // This starter code allocates the mip levels and generates a level 
-  // map by filling each level with placeholder data in the form of a 
-  // color that differs from its neighbours'. You should instead fill
-  // with the correct data!
-
   // Task 7: Implement this
-
   // check start level
   if ( startLevel >= tex.mipmap.size() ) {
     std::cerr << "Invalid start level"; 
@@ -64,18 +57,38 @@ void Sampler2DImp::generate_mips(Texture& tex, int startLevel) {
 
   }
 
-  // fill all 0 sub levels with interchanging colors (JUST AS A PLACEHOLDER)
-  Color colors[3] = { Color(1,0,0,1), Color(0,1,0,1), Color(0,0,1,1) };
-  for(size_t i = 1; i < tex.mipmap.size(); ++i) {
+  // Fill in mipmaps with appropriate data
+  // MimMap[0] is the original image
+  for (size_t idx = 1; idx < tex.mipmap.size(); idx++) {
+      MipLevel& prev = tex.mipmap[idx - 1];
+      MipLevel& curr = tex.mipmap[idx];
 
-    Color c = colors[i % 3];
-    MipLevel& mip = tex.mipmap[i];
-
-    for(size_t i = 0; i < 4 * mip.width * mip.height; i += 4) {
-      float_to_uint8( &mip.texels[i], &c.r );
-    }
+      for (size_t x = 0; x < curr.width; x++) {
+          // corresponding x-coordinate in previous mipmap
+          size_t prev_x = 2 * x;
+          for (size_t y = 0; y < curr.height; y++) {
+              // corresponding y-coordinate in previous mipmap
+              size_t prev_y = 2 * y;
+              uint16_t r = 0, g = 0, b = 0, a = 0;
+              // Sum the values of the four corresponding pixels in a 2x2 window
+              for (int i = 0; i < 2; i++) {
+                  for (int j = 0; j < 2; j++) {
+                      size_t prev_pix_pos = 4 * (prev_x + i + (prev_y + j) * prev.width);
+                      r += prev.texels[prev_pix_pos];
+                      g += prev.texels[prev_pix_pos + 1];
+                      b += prev.texels[prev_pix_pos + 2];
+                      a += prev.texels[prev_pix_pos + 3];
+                  }
+              }
+              // Update the current mipmap pixel values with averaged values
+              size_t curr_pix_pos = 4 * (x + y * curr.width);
+              curr.texels[curr_pix_pos] = r / 4;
+              curr.texels[curr_pix_pos + 1] = g / 4;
+              curr.texels[curr_pix_pos + 2] = b / 4;
+              curr.texels[curr_pix_pos + 3] = a / 4;
+          }
+      }
   }
-
 }
 
 Color Sampler2DImp::sample_nearest(Texture& tex, 
@@ -96,6 +109,25 @@ Color Sampler2DImp::sample_nearest(Texture& tex,
     Color c;
     uint8_to_float(&c.r, &mip.texels[4 * (texel_x + mip.width * texel_y)]);
     return c;
+}
+
+Color Sampler2DImp::sample_trilinear(Texture& tex,
+    float u, float v,
+    float u_scale, float v_scale) {
+
+    // compute mipmap level given u_scale and v_scale parameters values
+    float d = max(0.f, log2f(max(u_scale, v_scale)));
+    // two mipmap levels to be interpolated between
+    int first_level = floor(d);
+    int second_level = first_level + 1;
+
+    // interpolation using the fractional part of the mipmap level
+    float w = second_level - d;
+
+    Color c0 = sample_bilinear(tex, u, v, first_level);
+    Color c1 = sample_bilinear(tex, u, v, second_level);
+
+    return w * c0 + (1 - w) * c1;
 }
 
 Color Sampler2DImp::sample_bilinear(Texture& tex, 
@@ -127,17 +159,6 @@ Color Sampler2DImp::sample_bilinear(Texture& tex,
     Color f = (1 - texel_t)*((1 - texel_s) * c00 + texel_s * c01) + 
         texel_t * ((1-texel_s)*c10 + texel_s * c11);
     return f;
-}
-
-Color Sampler2DImp::sample_trilinear(Texture& tex, 
-                                     float u, float v, 
-                                     float u_scale, float v_scale) {
-
-  // Task 7: Implement trilinear filtering
-
-  // return magenta for invalid level
-  return Color(1,0,1,1);
-
 }
 
 } // namespace CMU462

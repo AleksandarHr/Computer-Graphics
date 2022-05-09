@@ -396,14 +396,27 @@ void SoftwareRendererImp::rasterize_image( float x0, float y0,
     y0 *= sample_rate;
     y1 *= sample_rate;
 
-    float w = x1 - x0;
-    float h= y1 - y0;
-    float du = 1.0f / w;
-    float dv = 1.0f / h;
+    //// Uncomment for bilinear interpolation sampling
+    //float w = x1 - x0;
+    //float h= y1 - y0;
+    //float du = 1.0f / w;
+    //float dv = 1.0f / h;
+
+    //for (float x = x0, u = 0; x < x1; x++, u += du) {
+    //    for (float y = y0, v = 0; y < y1; y++, v += dv) {
+    //        Color c = sampler->sample_bilinear(tex, u, v);
+    //        fill_sample(x, y, c);
+    //    }
+    //}
+
+    // Trilinear interpolation sampling
+    float w = x1 - x0, du = 1.0f / w;
+    float h = y1 - y0, dv = 1.0f / h;
+    float u_scale = tex.width / w, v_scale = tex.height / h;
 
     for (float x = x0, u = 0; x < x1; x++, u += du) {
         for (float y = y0, v = 0; y < y1; y++, v += dv) {
-            Color c = sampler->sample_bilinear(tex, u, v);
+            Color c = sampler->sample_trilinear(tex, u, v, u_scale, v_scale);
             fill_sample(x, y, c);
         }
     }
