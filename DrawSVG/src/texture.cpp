@@ -116,18 +116,20 @@ Color Sampler2DImp::sample_trilinear(Texture& tex,
     float u_scale, float v_scale) {
 
     // compute mipmap level given u_scale and v_scale parameters values
-    float d = max(0.f, log2f(max(u_scale, v_scale)));
+    float d = max(log2f(max(u_scale, v_scale)), 0.0f);
+
+//    float d = max(0.f, log2f(max(u_scale, v_scale)));
     // two mipmap levels to be interpolated between
     int first_level = floor(d);
     int second_level = first_level + 1;
 
     // interpolation using the fractional part of the mipmap level
-    float w = second_level - d;
+    float w = d - first_level;
 
     Color c0 = sample_bilinear(tex, u, v, first_level);
     Color c1 = sample_bilinear(tex, u, v, second_level);
 
-    return w * c0 + (1 - w) * c1;
+    return (1 - w) * c0 + w * c1;
 }
 
 Color Sampler2DImp::sample_bilinear(Texture& tex, 

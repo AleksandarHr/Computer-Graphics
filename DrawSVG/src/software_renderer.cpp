@@ -410,12 +410,13 @@ void SoftwareRendererImp::rasterize_image( float x0, float y0,
     //}
 
     // Trilinear interpolation sampling
-    float w = x1 - x0, du = 1.0f / w;
-    float h = y1 - y0, dv = 1.0f / h;
-    float u_scale = tex.width / w, v_scale = tex.height / h;
+    float dx = x1 - x0, u_scale = tex.width / dx;
+    float dy = y1 - y0, v_scale = tex.height / dy;
 
-    for (float x = x0, u = 0; x < x1; x++, u += du) {
-        for (float y = y0, v = 0; y < y1; y++, v += dv) {
+    for (int x = (int)floor(x0); x <= (int)floor(x1); x++) {
+        for (int y = (int)floor(y0); y <= (int)floor(y1); y++) {
+            float u = ((x + 0.5f) - x0) / (dx * sample_rate);
+            float v = ((y + 0.5f) - y0) / (dy * sample_rate);
             Color c = sampler->sample_trilinear(tex, u, v, u_scale, v_scale);
             fill_sample(x, y, c);
         }
